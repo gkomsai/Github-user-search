@@ -1,10 +1,15 @@
-import React from 'react'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Followers from "../pages/Followers";
+import { Home } from "../pages/Home";
 
-const Allroutes = () => {
-    
+const AllRoutes = () => {
   return (
-    <div>Allroutes</div>
-  )
-}
+    <Routes>
+      <Route path="/follwers" element={<Followers />} />
+      <Route path="/" element={<Home />} />
+    </Routes>
+  );
+};
 
-export default Allroutes
+export default AllRoutes;
