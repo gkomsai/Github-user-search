@@ -1,0 +1,11 @@
+.imgBox {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.imgBox>img {
+  height: 150%;
+
+  border-radius: 50%;
+}

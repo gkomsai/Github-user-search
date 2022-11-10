@@ -19,7 +19,7 @@ export const Home = () => {
   const dispatch = useDispatch();
   const { isLoading, isError, repoData } = useSelector((store) => store);
 
-  
+
   const handleGetData = () => {
     dispatch(getUserData(username));
     setUsername("");
@@ -60,7 +60,7 @@ export const Home = () => {
       </Flex>
       {repoData.length > 0 ? (
         <Flex
-          w="30%"
+          w={["80%","60%"]}
           gap={20}
           m="2rem auto"
           boxShadow={"dark-lg"}
@@ -73,14 +73,16 @@ export const Home = () => {
             name="Kent Dodds"
             src={repoData[0]?.owner.avatar_url}
           />
-          {/* <Flex direction={"column"} gap="4" justifyContent="flex-start"> */}
+       
             <Text color={"blue"} fontWeight="bold">
             {repoData[0]?.owner.login}
             </Text>
             <Button  bg="green" color={"white"}>
               <Link to={"/followers"}>Followers </Link>{" "}
             </Button>
-         
+             <Button  bg="green" color={"white"}>
+              <Link to={"/followers"}>Clear Results </Link>{" "}
+            </Button>
         
         </Flex>
       ) : null}
