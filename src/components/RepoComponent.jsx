@@ -28,7 +28,7 @@ const RepoComponent = ({
           minHeight="200px"
           minW={"500px"}
         >
-          <Avatar size="md" name={login} src={avatar_url} />
+          <Avatar   size="lg" name={login} src={avatar_url} />
           <Flex direction={"column"} gap="4" justifyContent="flex-start">
             <Text fontWeight="bold">
               {name}

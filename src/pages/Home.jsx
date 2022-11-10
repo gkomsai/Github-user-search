@@ -69,7 +69,7 @@ export const Home = () => {
           alignItems={"center"}
         >
           <Avatar
-            size="md"
+            size="lg"
             name="Kent Dodds"
             src={repoData[0]?.owner.avatar_url}
           />

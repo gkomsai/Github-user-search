@@ -9,7 +9,7 @@ const Followers = () => {
 
   return (
     <>
-      <SimpleGrid columns={[1, null, 2]} spacing="40px">
+      <SimpleGrid columns={[1, 2, 3]} spacing="40px">
         {followersData?.map((el) => (
           <FollowersCard key={el.id} data={el} />
         ))}

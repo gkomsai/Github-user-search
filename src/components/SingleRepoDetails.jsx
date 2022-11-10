@@ -20,7 +20,7 @@ const SingleRepoDetails = () => {
   } = singleRepoData;
 
   return (
-    <Box w="70%" m="2rem auto" boxShadow={"lg"} p="10px">
+    <Box w="70%" m="2rem auto"   boxShadow={"dark-lg"} p="10px">
       <Flex
         gap={20}
         m="2rem auto"
