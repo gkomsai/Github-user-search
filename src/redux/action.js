@@ -9,7 +9,7 @@ export const getUserData = (username) => async (dispatch) => {
       console.log({repoData})
     dispatch({
       type: types.GET_DATA_SUCCESS,
-      payload: { repoData, followersData },
+      payload: {repoData, followersData },
     });
   } catch (err) {
     console.log(err);

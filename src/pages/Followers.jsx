@@ -1,9 +1,21 @@
-import React from 'react'
+import { SimpleGrid } from "@chakra-ui/react";
+import React from "react";
+import { useSelector } from "react-redux";
+
+import FollowersCard from "../components/FollowersCard";
 
 const Followers = () => {
-  return (
-    <div>Followers</div>
-  )
-}
+  const followersData = useSelector((store) => store.followersData);
 
-export default Followers
+  return (
+    <>
+      <SimpleGrid columns={[1, null, 2]} spacing="40px">
+        {followersData?.map((el) => (
+          <FollowersCard key={el.id} data={el} />
+        ))}
+      </SimpleGrid>
+    </>
+  );
+};
+
+export default Followers;
