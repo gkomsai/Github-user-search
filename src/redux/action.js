@@ -5,14 +5,18 @@ export const getUserData = (username) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_DATA_LOADING });
     const { data: repoData } = await axios.get(`/${username}/repos`);
-      const { data: followersData } = await axios.get(`/${username}/followers`);
-      console.log({repoData})
+    const { data: followersData } = await axios.get(`/${username}/followers`);
+    // console.log({repoData})
     dispatch({
       type: types.GET_DATA_SUCCESS,
-      payload: {repoData, followersData },
+      payload: { repoData, followersData },
     });
   } catch (err) {
     console.log(err);
     dispatch({ type: types.GET_DATA_ERROR });
   }
+};
+
+export const clearResult = () => (dispatch) => {
+  return dispatch({ type: types.CLEAR_RESULT_SUCCESS });
 };

@@ -12,13 +12,12 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import RepoComponent from "../components/RepoComponent";
-import { getUserData } from "../redux/action";
+import { clearResult, getUserData } from "../redux/action";
 
 export const Home = () => {
   const [username, setUsername] = useState("");
   const dispatch = useDispatch();
   const { isLoading, isError, repoData } = useSelector((store) => store);
-
 
   const handleGetData = () => {
     dispatch(getUserData(username));
@@ -60,7 +59,7 @@ export const Home = () => {
       </Flex>
       {repoData.length > 0 ? (
         <Flex
-          w={["80%","60%"]}
+          w={["80%", "60%"]}
           gap={20}
           m="2rem auto"
           boxShadow={"dark-lg"}
@@ -73,17 +72,22 @@ export const Home = () => {
             name="Kent Dodds"
             src={repoData[0]?.owner.avatar_url}
           />
-       
-            <Text color={"blue"} fontWeight="bold">
+
+          <Text color={"blue"} fontWeight="bold">
             {repoData[0]?.owner.login}
-            </Text>
-            <Button  bg="green" color={"white"}>
-              <Link to={"/followers"}>Followers </Link>{" "}
-            </Button>
-             <Button  bg="green" color={"white"}>
-              <Link to={"/followers"}>Clear Results </Link>{" "}
-            </Button>
-        
+          </Text>
+          <Button bg="green" color={"white"}>
+            <Link to={"/followers"}>Followers </Link>{" "}
+          </Button>
+          <Button
+            bg="green"
+            color={"white"}
+            onClick={() => {
+              dispatch(clearResult());
+            }}
+          >
+            Clear Results
+          </Button>
         </Flex>
       ) : null}
 
