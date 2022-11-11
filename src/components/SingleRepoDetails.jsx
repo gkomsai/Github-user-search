@@ -6,7 +6,6 @@ const SingleRepoDetails = () => {
   const singleRepoData = getItemFromLocal("singleRepo");
   const {
     owner: { avatar_url },
-    created_at,
     name,
     topics,
     full_name,
