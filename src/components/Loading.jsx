@@ -3,7 +3,7 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <Container maxW={"40%"} m="2rem auto">
+    <Container maxW={"30%"} m="2rem auto">
       <CircularProgress
         isIndeterminate
         color="green.300"

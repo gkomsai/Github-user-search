@@ -1,4 +1,4 @@
-import { Box, Button, Flex, useColorMode } from "@chakra-ui/react";
+import { Box, Button, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
@@ -14,7 +14,6 @@ const Navbar = () => {
       w="100vw"
       padding={4}
       m="auto"
-      border={"4px solid red"}
     >
       <Box>
         {" "}

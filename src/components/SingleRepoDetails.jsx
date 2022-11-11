@@ -25,8 +25,9 @@ const SingleRepoDetails = () => {
           gap={20}
           m="2rem auto"
           padding={4}
-          fontSize="large"
+          fontSize={{ base: "sm", md: "md", lg: "lg" }}
           alignItems={"flex-start"}
+          direction={{ base: "column", md: "row" }}
         >
           <Box className="imgBox">
             <Image src={avatar_url} alt="" />
@@ -57,10 +58,10 @@ const SingleRepoDetails = () => {
           </Box>
         </Flex>
         <Flex
-          gap={20}
+          gap={["5rem", "10rem", "10rem", "16rem"]}
           m="2rem auto"
           padding={4}
-          fontSize="large"
+          fontSize={{ base: "sm", md: "md", lg: "lg" }}
           alignItems={"center"}
         >
           <Box>
