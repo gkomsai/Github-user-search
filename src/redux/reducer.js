@@ -9,7 +9,7 @@ const initState = {
 };
 
 export const reducer = (state = initState, { type, payload }) => {
-    console.log({payload})
+  console.log({ payload });
   switch (type) {
     case types.GET_DATA_LOADING:
       return {
@@ -17,8 +17,7 @@ export const reducer = (state = initState, { type, payload }) => {
         isLoading: true,
         isError: false,
       };
-      case types.GET_DATA_SUCCESS:
-          console.log("success",{payload})
+    case types.GET_DATA_SUCCESS:
       saveItemToLocal("repoData", payload.repoData);
       saveItemToLocal("followersData", payload.followersData);
       return {
@@ -33,6 +32,14 @@ export const reducer = (state = initState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    case types.CLEAR_RESULT_SUCCESS:
+      localStorage.clear();
+      return {
+        ...state,
+        repoData: [],
+        followersData: []
+
       };
 
     default:

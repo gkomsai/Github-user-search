@@ -1,4 +1,4 @@
-import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 
 const FollowersCard = ({ data }) => {
@@ -7,18 +7,19 @@ const FollowersCard = ({ data }) => {
     <Box
       w={["90%", "70%"]}
       m="2rem auto"
+      boxShadow={"dark-lg"}
       onClick={() => window.open(`${html_url}`)}
       cursor="pointer"
     >
+    
       <Flex
-        gap={[5, 8, 10]}
-        boxShadow={"dark-lg"}
+        gap={[10, 5, 3, 10]}
+        overflow="hidden"
         padding={4}
-        fontSize="large"
         alignItems={"center"}
       >
         <Box>
-          <Avatar size="lg" name="Kent Dodds" src={avatar_url} />
+          <Avatar size="lg" name={login} src={avatar_url} />
         </Box>
         <Box>
           <Text fontWeight={"bold"}>{login}</Text>

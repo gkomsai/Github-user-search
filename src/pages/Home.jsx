@@ -5,20 +5,22 @@ import {
   CircularProgress,
   Flex,
   Input,
+  Show,
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Error from "../components/Error";
+import Loading from "../components/Loading";
 import RepoComponent from "../components/RepoComponent";
-import { getUserData } from "../redux/action";
+import { clearResult, getUserData } from "../redux/action";
 
 export const Home = () => {
   const [username, setUsername] = useState("");
   const dispatch = useDispatch();
   const { isLoading, isError, repoData } = useSelector((store) => store);
-
 
   const handleGetData = () => {
     dispatch(getUserData(username));
@@ -26,27 +28,23 @@ export const Home = () => {
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      // console.log("enter press here! ");
       dispatch(getUserData(username));
+      setUsername("");
     }
   };
 
-  if (isLoading) {
-    return (
-      <CircularProgress
-        isIndeterminate
-        color="green.300"
-        value={50}
-        size="120px"
-      />
-    );
-  }
-  if (isError) {
-    return <Box>...error</Box>;
-  }
-  return (
-    <>
-      <Flex w="30%" gap={4} m="2rem auto">
+  return isLoading ? (
+    <Loading />
+  ) : isError ? (
+    <Error />
+  ) : (
+    <Box>
+      <Flex
+        width={["80%", "60%", "40%", "30%"]}
+        overflow={"hidden"}
+        gap={4}
+        m="2rem auto"
+      >
         <Input
           onKeyPress={handleKeyPress}
           onChange={(e) => {
@@ -60,12 +58,12 @@ export const Home = () => {
       </Flex>
       {repoData.length > 0 ? (
         <Flex
-          w={["80%","60%"]}
-          gap={20}
+          w={["80%", "60%", "60%", "50%", "40%"]}
+          gap={[10, 10, 7, 10]}
           m="2rem auto"
           boxShadow={"dark-lg"}
           padding={4}
-          fontSize="large"
+          fontSize={{ base: "md" }}
           alignItems={"center"}
         >
           <Avatar
@@ -73,27 +71,39 @@ export const Home = () => {
             name="Kent Dodds"
             src={repoData[0]?.owner.avatar_url}
           />
-       
-            <Text color={"blue"} fontWeight="bold">
+
+          <Text color={"blue"} fontWeight="bold">
             {repoData[0]?.owner.login}
-            </Text>
-            <Button  bg="green" color={"white"}>
-              <Link to={"/followers"}>Followers </Link>{" "}
+          </Text>
+          <Button
+            bg="green"
+            fontSize={{ base: "sm", md: "sm" }}
+            color={"white"}
+          >
+            <Link to={"/followers"}>Followers </Link>{" "}
+          </Button>
+          <Show above="md">
+            <Button
+              fontSize={{ base: "sm", md: "md" }}
+              bg="green"
+              color={"white"}
+              onClick={() => {
+                dispatch(clearResult());
+              }}
+            >
+              Clear Results
             </Button>
-             <Button  bg="green" color={"white"}>
-              <Link to={"/followers"}>Clear Results </Link>{" "}
-            </Button>
-        
+          </Show>
         </Flex>
       ) : null}
 
-      <SimpleGrid columns={[1, null, 2]} spacing="40px" m="4rem">
+      <SimpleGrid columns={[1, 1, 1, 2]} gap="3rem" m="4rem">
         {repoData.length > 0
           ? repoData.map((el) => (
               <RepoComponent key={el.id} {...el} singleRepoData={el} />
             ))
           : ""}
       </SimpleGrid>
-    </>
+    </Box>
   );
 };
